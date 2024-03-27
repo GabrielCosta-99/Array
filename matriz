@@ -1,0 +1,51 @@
+fn main() {
+    let tamanho = 12;
+    let mut soma = 0;
+    let mut contador = 0;
+    let mut o: String = String::new();
+
+
+    let mut matriz = vec![vec![0; tamanho]; tamanho];
+    let mut valor = 1;
+    for i in 0..tamanho {
+        for j in 0..tamanho {
+            matriz[i][j] = valor;
+            valor += 1;
+        }
+    }
+
+    println!("Digite a operação desejada: ");
+    print!("Soma S ou Média M => ");
+    std::io::stdin().read_line(&mut o).unwrap();
+
+    let o = o.trim();
+
+    for i in 0..tamanho {
+        for j in (tamanho / 2 + i)..tamanho {
+            soma += matriz[i][j];
+            contador += 1;
+        }
+    }
+
+
+    if o == "M" {
+        println!("Média: {:.1}", soma as f32 / contador as f32);
+    } else {
+        println!("Soma: {}", soma);
+    }
+
+  
+    println!(" ");
+    for i in 0..tamanho {
+        for j in 0..tamanho {
+            if j < 6 - i || j > i + 6 {
+                print!("{:6}", ".");
+            } else if j > 5 && j < 12 && j <= i + 6 {
+                print!("{:6}", "x");
+            } else {
+                print!("{:6}", ".");
+            }
+        }
+        println!();
+    }
+}
